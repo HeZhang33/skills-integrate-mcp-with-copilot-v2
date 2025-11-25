@@ -69,6 +69,9 @@ function setUserInfo() {
     document.getElementById('user-points-display').classList.remove('hidden');
     updateUserPointsDisplay();
     
+    // Refresh events display to show correct buttons
+    displayEvents(allEvents);
+    
     showMessage(`Welcome, ${name}! You can now register for events.`, 'success');
 }
 
