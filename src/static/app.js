@@ -202,13 +202,13 @@ function registerForEvent(eventId) {
         return;
     }
     
-    const formData = new FormData();
-    formData.append('user_email', currentUser.email);
-    formData.append('user_name', currentUser.name);
+    const params = new URLSearchParams({
+        user_email: currentUser.email,
+        user_name: currentUser.name
+    });
     
-    fetch(`/events/${eventId}/register`, {
-        method: 'POST',
-        body: formData
+    fetch(`/events/${eventId}/register?${params}`, {
+        method: 'POST'
     })
     .then(response => response.json())
     .then(data => {
@@ -227,12 +227,12 @@ function registerForEvent(eventId) {
 }
 
 function unregisterFromEvent(eventId) {
-    const formData = new FormData();
-    formData.append('user_email', currentUser.email);
+    const params = new URLSearchParams({
+        user_email: currentUser.email
+    });
     
-    fetch(`/events/${eventId}/unregister`, {
-        method: 'DELETE',
-        body: formData
+    fetch(`/events/${eventId}/unregister?${params}`, {
+        method: 'DELETE'
     })
     .then(response => response.json())
     .then(data => {
@@ -249,12 +249,12 @@ function unregisterFromEvent(eventId) {
 }
 
 function markAttendance(eventId) {
-    const formData = new FormData();
-    formData.append('user_email', currentUser.email);
+    const params = new URLSearchParams({
+        user_email: currentUser.email
+    });
     
-    fetch(`/events/${eventId}/mark-attendance`, {
-        method: 'POST',
-        body: formData
+    fetch(`/events/${eventId}/mark-attendance?${params}`, {
+        method: 'POST'
     })
     .then(response => response.json())
     .then(data => {
@@ -272,12 +272,12 @@ function markAttendance(eventId) {
 }
 
 function completeEvent(eventId) {
-    const formData = new FormData();
-    formData.append('user_email', currentUser.email);
+    const params = new URLSearchParams({
+        user_email: currentUser.email
+    });
     
-    fetch(`/events/${eventId}/complete`, {
-        method: 'POST',
-        body: formData
+    fetch(`/events/${eventId}/complete?${params}`, {
+        method: 'POST'
     })
     .then(response => response.json())
     .then(data => {
