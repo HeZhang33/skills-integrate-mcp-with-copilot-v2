@@ -3,46 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mergington High School Activities</title>
+    <title>Mergington High School - Event Management & Leaderboard</title>
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+      <h1><i class="fas fa-graduation-cap"></i> Mergington High School</h1>
+      <h2>Event Management & Student Leaderboard</h2>
+      <nav>
+        <button class="nav-btn active" onclick="showTab('events')">📅 Events</button>
+        <button class="nav-btn" onclick="showTab('leaderboard')">🏆 Leaderboard</button>
+        <button class="nav-btn" onclick="showTab('badges')">🏅 Badges</button>
+        <button class="nav-btn" onclick="showTab('profile')">👤 My Profile</button>
+      </nav>
     </header>
 
     <main>
-      <section id="activities-container">
-        <h3>Available Activities</h3>
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+      <!-- Events Tab -->
+      <section id="events-tab" class="tab-content active">
+        <div class="user-input-section">
+          <h3>👤 Student Information</h3>
+          <div class="form-group">
+            <input type="email" id="student-email" placeholder="Enter your email (e.g., student@mergington.edu)" />
+            <input type="text" id="student-name" placeholder="Enter your full name" />
+            <button onclick="setUserInfo()">Set User Info</button>
+          </div>
+          <div id="user-points-display" class="hidden">
+            <div class="points-card">
+              <h4>🌟 Your Points: <span id="current-points">0</span></h4>
+              <p>Rank: <span id="current-rank">#--</span> | Badges: <span id="badge-count">0</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="events-container">
+          <h3>📅 Available Events</h3>
+          <div id="events-list">
+            <p>Loading events...</p>
+          </div>
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
-          <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
-          </div>
-          <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <div id="message" class="hidden"></div>
+      <!-- Leaderboard Tab -->
+      <section id="leaderboard-tab" class="tab-content">
+        <div class="leaderboard-header">
+          <h3>🏆 Student Leaderboard</h3>
+          <button onclick="refreshLeaderboard()" class="refresh-btn">🔄 Refresh</button>
+        </div>
+        <div id="leaderboard-list">
+          <p>Loading leaderboard...</p>
+        </div>
+      </section>
+
+      <!-- Badges Tab -->
+      <section id="badges-tab" class="tab-content">
+        <h3>🏅 Achievement Badges</h3>
+        <div id="badges-list">
+          <p>Loading badges...</p>
+        </div>
+      </section>
+
+      <!-- Profile Tab -->
+      <section id="profile-tab" class="tab-content">
+        <h3>👤 My Profile</h3>
+        <div id="profile-content">
+          <p>Please set your user information in the Events tab first.</p>
+        </div>
       </section>
     </main>
 
+    <div id="message-popup" class="hidden">
+      <div class="message-content">
+        <span id="message-text"></span>
+        <button onclick="hideMessage()">×</button>
+      </div>
+    </div>
+
     <footer>
-      <p>&copy; 2023 Mergington High School</p>
+      <p>&copy; 2024 Mergington High School - Enhanced Event Management System</p>
     </footer>
 
     <script src="app.js"></script>
